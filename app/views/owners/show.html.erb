@@ -1,0 +1,13 @@
+<h1>Welcome <%=@owner.username%>!</h1>
+<h3>To logout, please click here: <%=link_to "Logout", ownersession_path("#{@owner.id}"), method: 'delete' %></h3>
+
+
+<%if !@owner.gyms.blank? %>
+  <h3>Here are your gyms: </h3>
+	<%@owner.gyms.each do |gym| %>
+		<%=gym.name%>
+	<%end%>
+<%end%>
+
+<h2>To add a gym, please click below:</h2>
+	<%=link_to "Add Gym", new_gym_path %>

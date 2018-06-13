@@ -1,0 +1,9 @@
+This is the owner login page
+
+<%=form_for(@owner, url: ownersessions_path) do |f| %>
+	<label>Username: </label>
+	<%=f.text_field :username %><br>
+	<label>Password: </label>
+	<%=f.text_field :password %><br>
+	<%=f.submit "Owner Login" %>
+<%end%>
