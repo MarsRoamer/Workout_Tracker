@@ -1,1 +1,15 @@
+
 This is where the owner can create a gym
+
+<h2>Add Gym: </h2>
+<%=form_for [@owner, @gym], url: {action: "create"} do |f| %>
+	<label>Name: </label>
+	<%=f.text_field :name %><br>
+	<label>City: </label>
+	<%=f.text_field :city %><br>
+	<label>State: </label>
+	<%=f.text_field :state %><br>
+	<label>Motto: </label>
+	<%=f.text_field :motto %><br>
+	<%=f.submit "Add Gym" %>
+<%end%>
