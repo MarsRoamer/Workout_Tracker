@@ -1,5 +1,9 @@
 Workout Show Page
 
-<h2><%=@workout.name%></h2>
-<h2><%=@workout.conditioning_type%></h2>
-<h2><%=@workout.description%></h2>
+<h2>Workout name: <%=@workout.name%></h2>
+<h2>Workout type: <%=@workout.conditioning_type%></h2>
+<h2>Workout description: <%=@workout.description%></h2>
+
+<%if @gym.owner == current_owner %>
+	<h2><%=link_to "Edit Workout", edit_owner_gym_workout_path(current_owner, @gym, @workout)%></h2>
+<%end%>

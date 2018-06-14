@@ -14,7 +14,7 @@ class WorkoutsController < ApplicationController
 			workout.save
 			redirect_to gym_path(gym)
 		else
-			redirect_to new_ownersession
+			redirect_to new_ownersession_path
 		end
 
 	end
@@ -25,6 +25,25 @@ class WorkoutsController < ApplicationController
 
 	def show
 		@workout = Workout.find_by(id: params[:id])
+		@gym = Gym.find_by(id: @workout.gym_id)
+
+	end
+
+	def edit
+		@gym = Gym.find_by(id: params[:gym_id])
+		@owner = Owner.find_by(id: params[:owner_id])
+		@workout = Workout.find_by(id: params[:id])
+
+	end
+
+	def update
+		workout = Workout.find_by(id: params[:id])
+		if current_owner && current_owner.gyms.find_by(id: workout.gym_id)
+			workout.update(workout_params)
+		    redirect_to workout_path(workout)
+		else
+			redirect_to new_ownersession_path
+		end
 
 	end
 
