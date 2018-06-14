@@ -3,3 +3,12 @@ This is the gym show page!
 
 <h2>Gym name: <%=@gym.name%></h2>
 <h2>Gym motto: <%=@gym.motto%></h2>
+<%if !@gym.workouts.blank? %>
+	<%@gym.workouts.each do |workout| %>
+		<h2><%=link_to workout.name, workout_path(workout)%></h2>
+	<%end%>
+<%end%>
+
+<%if owner_logged_in?%>
+	<h2>Click here to add workout: <%=link_to "Add Workout", new_owner_gym_workout_path(@gym.owner, @gym), method: "Get"%></h2>
+<%end%>

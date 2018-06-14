@@ -24,4 +24,5 @@ class ApplicationController < ActionController::Base
 
 	    helper_method :current_user
 	    helper_method :current_owner
+	    helper_method :owner_logged_in?
 end
