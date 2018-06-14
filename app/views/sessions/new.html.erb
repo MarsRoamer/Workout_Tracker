@@ -1,0 +1,10 @@
+User Login Page:
+
+<%=form_tag("/sessions", method: "post") do %>
+	<label>Username: </label>
+	<%=text_field_tag :username %>
+	<label>password: </label>
+	<%=text_field_tag :password %>
+	<%=submit_tag "Login" %>
+<%end%>	
+

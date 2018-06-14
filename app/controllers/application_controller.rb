@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
 		!!current_owner
 	end
 
+	def user_logged_in?
+		!!current_user
+	end
+
 
 	private
 
@@ -25,4 +29,5 @@ class ApplicationController < ActionController::Base
 	    helper_method :current_user
 	    helper_method :current_owner
 	    helper_method :owner_logged_in?
+	    helper_method :user_logged_in?
 end
