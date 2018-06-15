@@ -1,5 +1,5 @@
 User show page
-<%binding.pry%>
+
 <h2><%=@user.username%></h2>
 <h2><%=link_to @user.gym.name, gym_path(@user.gym)%></h2>
 <h2><%=link_to "Logout", session_path(@user), method: "delete"%></h2>

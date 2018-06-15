@@ -5,7 +5,7 @@
 <%if !@owner.gyms.blank? %>
   <h3>Here are your gyms: </h3>
 	<%@owner.gyms.each do |gym| %>
-		<%=gym.name%><br>
+		<%=link_to gym.name, gym_path(gym)%><br>
 	<%end%>
 <%end%>
 

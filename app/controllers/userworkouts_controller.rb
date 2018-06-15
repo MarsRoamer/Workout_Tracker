@@ -7,7 +7,7 @@ class UserworkoutsController < ApplicationController
 	end
 
 	def create
-		binding.pry
+		
 		workout = Workout.find_by(id: params[:workout_id])
 		userworkout = UserWorkout.create(user_id: current_user.id, workout_id: params[:workout_id], time: params[:time], score: params[:score])
 		userworkout.save
@@ -16,7 +16,7 @@ class UserworkoutsController < ApplicationController
 	end
 
 	def show
-		@workout = UserWorkout.find_by(id: params[:id])
+		@userworkout = UserWorkout.find_by(id: params[:id])
 	end
 
 	private
