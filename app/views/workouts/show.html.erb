@@ -4,6 +4,10 @@ Workout Show Page
 <h2>Workout type: <%=@workout.conditioning_type%></h2>
 <h2>Workout description: <%=@workout.description%></h2>
 
+<%if current_user.gym.id == @workout.gym_id %>
+	<%=link_to "Do this workout", new_workout_userworkout_path(@workout)%>
+<%end%>
+
 <%if @gym.owner == current_owner %>
 	<h2><%=link_to "Edit Workout", edit_owner_gym_workout_path(current_owner, @gym, @workout)%></h2>
 <%end%>

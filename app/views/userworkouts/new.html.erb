@@ -1,0 +1,9 @@
+
+<%=form_tag(controller: "userworkouts", action: "create", method: "post") do %>
+	<label>Time: </label>
+	<%=text_field_tag :time %>
+	<label>Score: </label>
+	<%=text_area_tag :score %>
+	<%=submit_tag "Submit Workout" %>
+<%end%>
+
