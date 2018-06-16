@@ -12,7 +12,15 @@ class UsersController < ApplicationController
 
 	end
 
+	def edit
+		@user = current_user
+	end
+
 	def update
+		
+		user = current_user
+		user.update(update_params)
+		redirect_to user_path(user)
 
 	end
 
@@ -29,6 +37,10 @@ class UsersController < ApplicationController
 
 		def user_params
 			params.require(:user).permit(:name, :city, :state, :gym_id, :username, :password)
+		end
+
+		def update_params
+			params.require(:user).permit(:username, :gym_id)
 		end
 
 end
