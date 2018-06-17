@@ -1,9 +1,24 @@
+ <nav class="navbar navbar-default">
+  <div class="container">
+	  <div class="navbar-header">
+	  	<a href="/"  class="navbar-brand">WOD Tracker</a>
+	  </div>
+	  <ul class="nav navbar-nav navbar-right">
+	  	<% if current_user %>
+	  		<li><a href="/users/<%=current_user.id%>"><%=current_user.username%>'s Profile</a></li>
+	  	<%elsif current_owner %>
+	  		<li><a href="/owners/<%=current_owner.id%>"><%=current_owner.username%>'s Profile</a></li>
+	  	<%end%>
+	  	<li><a href="/logout">Logout</a></li>	  	
+	  </ul>
+	 </div>
+ </nav>
 
 <%=form_tag(controller: "userworkouts", action: "create", method: "post") do %>
 	<label>Time: </label>
-	<%=text_field_tag :time %>
+	<%=text_field_tag :time %><br>
 	<label>Score: </label>
-	<%=text_area_tag :score %>
+	<%=text_area_tag :score %><br>
 	<%=submit_tag "Submit Workout" %>
 <%end%>
 

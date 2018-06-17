@@ -4,7 +4,12 @@ class ApplicationController < ActionController::Base
 
 
 	def home
-
+		if owner_logged_in?
+			redirect_to owner_path(current_owner)
+		elsif user_logged_in?
+			redirect_to user_path(current_user)
+		end
+		
 	end
 
 	def owner_logged_in?

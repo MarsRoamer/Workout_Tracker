@@ -1,4 +1,14 @@
-User show page
+ <nav class="navbar navbar-default">
+  <div class="container">
+	  <div class="navbar-header">
+	  	<a href="/"  class="navbar-brand">WOD Tracker</a>
+	  </div>
+	  <ul class="nav navbar-nav navbar-right">
+	  	<li><a href="/users/<%=current_user.id%>/edit">Edit Profile</a></li>
+	  	<li><a href="/logout">Logout</a></li>	  	
+	  </ul>
+	 </div>
+ </nav>
 
 <h2><%=@user.username%></h2>
 <%if @user.gym.id == 1000000%>
@@ -7,4 +17,3 @@ User show page
 <%else%>
 	<h2><%=link_to @user.gym.name, gym_path(@user.gym)%></h2>
 <%end%>
-<h2><%=link_to "Logout", session_path(@user), method: "delete"%></h2>

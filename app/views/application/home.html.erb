@@ -1,5 +1,45 @@
-This is the home landing page.
+  <nav class="navbar navbar-inverse">
+  	<div class="container">
+	  	<div class="navbar-header">
+	  		<a href="/"  class="navbar-brand">WOD Tracker</a>
+	  	</div>
+	  	<ul class="nav navbar-nav navbar-right">
+	  		<li><a href="/sessions/new">Login</a></li>
+	  		<li><a href="/users/new">Signup</a></li>
+	  		<li><a href="/owners">Gym Owners/Managers</a></li>
+	  	</ul>
+	  </div>
+  </nav>
 
+<!--   <div class="container">
+    <div class="jumbotron">
+  	  <h1>Empower Yourself - Inspire Others</h1>
+  	  <p>Some text about how fitness transforms lives</p>
+    </div>
+
+    <div class="row">
+    	<div class="col-lg-12">
+    		<div class="thumbnail">
+    		  <img src="https://images.unsplash.com/photo-1506197061617-7f5c0b093236?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=418764a3f148dde8a8de  bcea492f9156&auto=format&fit=crop&w=1905&q=80">
+    		</div>
+    	</div>
+ 
+    </div>
+  </div> -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+      	<div id="content">
+      	  <h1>Empower Yourself</h1>
+          <h3>Inspire Others</h3>
+          <hr>	
+      	</div>
+        
+
+      </div>	
+    </div>	
+  </div>
 
 <h2>To Login to your user account, please click here: <%=link_to "User Login", new_session_path%></h2>
 <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>

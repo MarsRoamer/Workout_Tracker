@@ -1,13 +1,37 @@
-
-This is the gym show page!
+ <nav class="navbar navbar-default">
+  <div class="container">
+	  <div class="navbar-header">
+	  	<a href="/"  class="navbar-brand">WOD Tracker</a>
+	  </div>
+	  <ul class="nav navbar-nav navbar-right">
+	  	<% if current_user %>
+	  		<li><a href="/users/<%=current_user.id%>"><%=current_user.username%>'s Profile</a></li>
+	  	<%elsif current_owner %>
+	  		<li><a href="/owners/<%=current_owner.id%>"><%=current_owner.username%>'s Profile</a></li>
+	  	<%end%>
+	  	<li><a href="/logout">Logout</a></li>	  	
+	  </ul>
+	 </div>
+ </nav>
 
 <h2>Gym name: <%=@gym.name%></h2>
 <h2>Gym motto: <%=@gym.motto%></h2>
 <%if !@gym.workouts.blank? %>
-	<%@gym.workouts.each do |workout| %>
-		<h2><%=link_to workout.name, workout_path(workout)%></h2>
+	
+	<h2>Today's Workout of the day is: <%=link_to @gym.workouts.last.name, workout_path(@gym.workouts.last)%></h2>
+	
+<%end%>
+
+<%if !@gym.wod_results.blank? %>
+	<%@gym.wod_results.each do |p| %>
+		<label>Name: <%=p[0]%></label><br>
+		<label>Time: <%=p[1]%></label><br>
+		<label>Score: <%=p[2]%></label><br><br>
 	<%end%>
 <%end%>
+
+<h2>Previous Workouts: </h2><%=collection_select(:workout, :workout_id, @gym.workouts.all, :id, :name)%>
+
 
 <%if owner_logged_in?%>
 	<h2>Click here to add workout: <%=link_to "Add Workout", new_owner_gym_workout_path(@gym.owner, @gym), method: "Get"%></h2>

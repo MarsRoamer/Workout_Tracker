@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 			resources :workouts, only: [:new, :create, :edit, :update]
 		end
 	end
+
+	get '/logout', to: 'sessions#destroy'
+
 	resources :ownersessions, only: [:new, :create, :destroy]
 	resources :sessions, only: [:new, :create, :destroy]
 	resources :gym, only: [:index, :show]

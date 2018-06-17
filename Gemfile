@@ -39,6 +39,7 @@ gem 'bcrypt'
 gem 'pry'
 gem "omniauth-google-oauth2", "~> 0.2.1"
 gem 'thin'
+gem 'bootstrap-sass'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
