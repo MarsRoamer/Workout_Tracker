@@ -11,6 +11,17 @@
 	 </div>
  </nav>
 
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2>There were some errors:</h2>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%=form_for @user do |f| %>
 	<label>Name: </label>
 	<%=f.text_field :name %><br>
@@ -19,13 +30,22 @@
 	<label>State: </label>
 	<%=f.text_field :state %><br>
 	<label>Gym affiliation: </label>
-	<%=f.collection_select(:gym_id, Gym.all, :id, :name) %><br>
+	<%=f.collection_select(:gym_id, @gyms, :id, :name, {:include_blank => 'Select your gym'})%><br>
 	<label>Email: </label>
 	<%=f.text_field :email %><br>
+
+	
 	<label>Username: </label>
-	<%=f.text_field :username %><br>
+	
+	  <%=f.text_field :username %><br>
+   
+
+    
 	<label>Password: </label>
-	<%=f.text_field :password %><br>
+
+	  <%=f.text_field :password %><br>
+	
+
 	<%=f.submit "Create Account" %><br><br>
 <%end%>
 

@@ -11,18 +11,20 @@
 	 </div>
  </nav>
 
-<form>
+
+
 <%=form_tag("/sessions", method: "post") do %>
   <div class="form-group">
-	<label>Username: </label>
+	<label id="username">Username: </label>
 	<%=text_field_tag :username %><br>
   </div>
   <div class="form-group">
-	<label>password: </label>
+	<label>Password: </label>
 	<%=text_field_tag :password %><br>
   </div>
 	<%=submit_tag "Login" %><br><br>
 <%end%>	
-</form>
+
+
 <%= button_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
 

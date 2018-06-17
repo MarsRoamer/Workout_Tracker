@@ -4,6 +4,11 @@ class User < ApplicationRecord
 	belongs_to :gym
 	has_many :user_workouts
 	has_many :workouts, through: :user_workouts
+  validates :password, presence: true 
+  validates :username, uniqueness: true
+  validates :username, presence: true
+  validates :gym_id, presence: true
+  validates :email, presence: true
 
   def self.from_omniauth(auth)
   	

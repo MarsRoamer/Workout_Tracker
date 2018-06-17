@@ -2,13 +2,19 @@ class UsersController < ApplicationController
 
 	def new
 		@user = User.new
-		@gyms = Gym.all
+		@gyms = Gym.all[0...-1]
 	end
 
 	def create
-		user = User.create(user_params)
-		session[:user_id] = user.id
-		redirect_to user_path(user)
+		@user = User.new(user_params)
+		if @user.valid?
+			@user.save 
+			session[:user_id] = @user.id
+			redirect_to user_path(@user)
+		else
+			@gyms = Gym.all[0...-1]
+			render :new
+		end
 
 	end
 
