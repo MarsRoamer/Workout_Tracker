@@ -20,11 +20,22 @@ class WorkoutsController < ApplicationController
 	end
 
 	def index
+		if current_user
+			@user = current_user
 
+		else
+			redirect_to new_session_path
+		end
 	end
 
 	def show
-		@workout = Workout.find_by(id: params[:id])
+		
+		if params[:workout]
+			@workout = Workout.find_by(id: params[:workout][:workout_id])
+		else
+			@workout = Workout.find_by(id: params[:id])	
+		end
+
 		@gym = Gym.find_by(id: @workout.gym_id)
 
 	end

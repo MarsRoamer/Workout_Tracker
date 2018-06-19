@@ -22,31 +22,12 @@
   </div>
 <% end %>
 
-<%=form_for @user do |f| %>
-	<label>Name: </label>
-	<%=f.text_field :name %><br>
-	<label>City: </label>
-	<%=f.text_field :city %><br>
-	<label>State: </label>
-	<%=f.text_field :state %><br>
-	<label>Gym affiliation: </label>
-	<%=f.collection_select(:gym_id, @gyms, :id, :name, {:include_blank => 'Select your gym'})%><br>
-	<label>Email: </label>
-	<%=f.text_field :email %><br>
-
-	
-	<label>Username: </label>
-	
-	  <%=f.text_field :username %><br>
-   
-
-    
-	<label>Password: </label>
-
-	  <%=f.text_field :password %><br>
-	
-
+<%= form_for @user, :html => {:class => "form-horizontal"} do |f| %>
+	<%= render :partial => "form", :locals=>{:f=>f} %>
 	<%=f.submit "Create Account" %><br><br>
 <%end%>
 
 <h4>To create an account using Google, please click here: <%= button_to "Create Account", "/auth/google_oauth2", id: "sign_in" %></h4>
+
+
+ 

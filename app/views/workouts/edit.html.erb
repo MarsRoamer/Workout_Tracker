@@ -1,11 +1,6 @@
 Workout edit page
 
 <%=form_for [@owner, @gym, @workout], url: {action: "update"} do |f| %>
-	<label>Name: </label>
-	<%=f.text_field :name %>
-	<label>Conditioning type: </label>
-	<%=f.text_field :conditioning_type %>
-	<label>Description: </label>
-	<%=f.text_area :description %>
+	<%= render :partial => "form", :locals=>{:f=>f} %>
 	<%=f.submit "Edit Workout" %>
 <%end%>

@@ -26,22 +26,25 @@
  
     </div>
   </div> -->
-
+<body class="home">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
       	<div id="content">
       	  <h1>Empower Yourself</h1>
           <h3>Inspire Others</h3>
-          <hr>	
+          <hr>
+          <div id="button">
+          <%=button_to "Get Started", new_user_path, method: "get"%>
+          </div>	
       	</div>
         
 
       </div>	
     </div>	
   </div>
-
-<h2>To Login to your user account, please click here: <%=link_to "User Login", new_session_path%></h2>
+</body>
+<!-- <h2>To Login to your user account, please click here: <%=link_to "User Login", new_session_path%></h2>
 <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
 <h2>To create a new user account, please click here: <%=link_to "New User", new_user_path %></h2>
-<h2>If you are the owner of a gym, please click here: <%=link_to "Owner's Page", owners_path%></h2>
+<h2>If you are the owner of a gym, please click here: <%=link_to "Owner's Page", owners_path%></h2> -->

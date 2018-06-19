@@ -10,10 +10,61 @@
 	 </div>
  </nav>
 
-<h2><%=@user.username%></h2>
+
+<body class="usershowpage">
+   <div class="container">
+    <div class="jumbotron">
+  	  <h1>Empower Yourself - Inspire Others</h1>
+  	  <p>Some text about how fitness transforms lives</p>
+    </div>
+   </div>
+
 <%if @user.gym.id == 1000000%>
 	<h3>Please finish setting up your profile, You need to select a gym</h3>
 	<h3>Proceed to <%=link_to "Edit Account", edit_user_path(@user)%></h3>
 <%else%>
-	<h2><%=link_to @user.gym.name, gym_path(@user.gym)%></h2>
+	 <div class="container">
+	 	<div class="row">
+	 		<div class="col-lg-4 usershow">
+	 			<div class="row gympic">
+	 				<img src="https://cdn.shopify.com/s/files/1/0257/2967/files/crossfitclass.png?v=1495746805">
+	 			</div>
+	 			<hr>
+	 			<div class="row links">
+	 				<h3><%=link_to "#{@user.gym.name}", gym_path(@user.gym)%></h3>
+	 			</div>
+	 		</div>
+	 		<div class="col-lg-4 center">
+	 			<%if !current_user.gym.workouts.blank? %>
+		 			<div class="row wod">
+		 				<h3>WOD: </h3>
+		 			</div>
+		 			<hr id="wodhr">
+		 			<div class="row woddesc">
+		 					<p><%=current_user.gym.workouts.last.description%></p>
+		 				
+		 				<div id="wob">
+		 				  <%=link_to "Do this workout", new_workout_userworkout_path(current_user.gym.workouts.last)%>
+		 				</div>
+
+		 			</div>
+	 			<%end%>
+	 			<hr id="wodhr">
+	 			
+	 		</div>
+	 		<div class="col-lg-4 usershow">
+	 			<div class="row gympic">
+	 				<img src="https://www.marathon-crossfit.com/hs-fs/hub/407947/file-2586099693-jpg/crossfitblackandwhite.jpg?t=1528984936978">
+	 			</div>
+	 			<hr>
+	 			<div class="row links">
+	 				<h3><%=link_to "Completed Workouts", workouts_path%></h3>
+	 			</div>
+	 		</div>
+	 
+	 	</div>
+	 </div>
+</body>
+
+
 <%end%>

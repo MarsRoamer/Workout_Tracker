@@ -1,5 +1,7 @@
 class UserworkoutsController < ApplicationController
 
+	
+
 	def new
 		
 		@userworkout = UserWorkout.new(user_id: current_user.id, workout_id: params[:workout_id])

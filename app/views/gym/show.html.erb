@@ -30,7 +30,10 @@
 	<%end%>
 <%end%>
 
-<h2>Previous Workouts: </h2><%=collection_select(:workout, :workout_id, @gym.workouts.all, :id, :name)%>
+<%=form_tag workout_path, method: "get" do %>
+	<h2>Previous Workouts: </h2><%=collection_select(:workout, :workout_id, @gym.workouts.all, :id, :name)%>
+	<%=submit_tag "See Workout" %>
+<%end%>
 
 
 <%if owner_logged_in?%>

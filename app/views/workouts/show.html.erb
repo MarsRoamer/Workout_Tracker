@@ -24,6 +24,8 @@
 	<%end%>
 <%end%>
 
-<%if @gym.owner == current_owner %>
-	<h2><%=button_to "Edit Workout", edit_owner_gym_workout_path(current_owner, @gym, @workout)%></h2>
+<%if current_owner %>
+	<%if @gym.owner == current_owner %>
+		<h2><%=link_to "Edit Workout", edit_owner_gym_workout_path(current_owner, @gym, @workout)%></h2>
+	<%end%>
 <%end%>
