@@ -22,11 +22,14 @@
 	
 <%end%>
 
-<%if !@gym.wod_results.blank? %>
-	<%@gym.wod_results.each do |p| %>
-		<label>Name: <%=p[0]%></label><br>
-		<label>Time: <%=p[1]%></label><br>
-		<label>Score: <%=p[2]%></label><br><br>
+<%if !@gym.workouts.blank? %>
+
+	<%if !@gym.wod_results.blank? %>
+		<%@gym.wod_results.each do |p| %>
+			<label>Name: <%=p[0]%></label><br>
+			<label>Time: <%=p[1]%></label><br>
+			<label>Score: <%=p[2]%></label><br><br>
+		<%end%>
 	<%end%>
 <%end%>
 

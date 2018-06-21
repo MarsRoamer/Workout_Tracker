@@ -8,6 +8,7 @@ class WorkoutsController < ApplicationController
 	end
 
 	def create
+		binding.pry
 		gym = Gym.find_by(id: params[:gym_id])
 		workout = gym.workouts.build(workout_params)
 		if gym.owner_id == current_owner.id

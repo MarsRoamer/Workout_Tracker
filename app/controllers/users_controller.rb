@@ -19,7 +19,11 @@ class UsersController < ApplicationController
 	end
 
 	def edit
-		@user = current_user
+		if user_logged_in?
+			@user = current_user
+		else
+			redirect_to new_session_path
+		end
 	end
 
 	def update

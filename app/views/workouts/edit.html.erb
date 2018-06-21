@@ -1,6 +1,7 @@
 Workout edit page
 
-<%=form_for [@owner, @gym, @workout], url: {action: "update"} do |f| %>
+
+<%= form_for [@owner, @gym, @workout], url: {action: "update"}, :html => {:class => "form-horizontal"} do |f| %>
 	<%= render :partial => "form", :locals=>{:f=>f} %>
-	<%=f.submit "Edit Workout" %>
+	<%=f.submit "Edit Workout" %><br><br>
 <%end%>
