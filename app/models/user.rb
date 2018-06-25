@@ -4,7 +4,7 @@ class User < ApplicationRecord
 	belongs_to :gym
 	has_many :user_workouts
 	has_many :workouts, through: :user_workouts
-  validates :password, presence: true 
+  validates :password, presence: true, unless: :omniauth?
   validates :username, uniqueness: true
   validates :username, presence: true
   validates :gym_id, presence: true
@@ -17,7 +17,8 @@ class User < ApplicationRecord
       user.uid = auth.uid
       user.username = auth.info.name
       user.password = auth.uid
-      if user.gym_id == 1000000
+      if user.gym_id.blank?
+       
           user.gym_id = 1000000
       else 
           user.gym_id = user.gym_id
@@ -28,6 +29,10 @@ class User < ApplicationRecord
       
       user.save!
     end
+  end
+
+  def omniauth?
+    !self.provider.blank?
   end
 
 end

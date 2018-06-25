@@ -30,6 +30,7 @@ class UsersController < ApplicationController
 		
 		user = current_user
 		user.update(update_params)
+	
 		redirect_to user_path(user)
 
 	end
