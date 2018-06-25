@@ -1,5 +1,15 @@
-	<h1>Welcome <%=@owner.username%>!</h1>
-<h3>To logout, please click here: <%=link_to "Logout", ownersession_path("#{@owner.id}"), method: 'delete' %></h3>
+ <nav class="navbar navbar-default">
+  <div class="container">
+	  <div class="navbar-header">
+	  	<a href="/"  class="navbar-brand">WOD Tracker</a>
+	  </div>
+	  <ul class="nav navbar-nav navbar-right">
+	  	<li><a href="/owners/<%=@owner.id%>/edit">Edit Profile</a></li>
+	  	<li><a href="/logout">Logout</a></li>
+	  </ul>
+	 </div>
+ </nav>
+
 
 
 <%if !@owner.gyms.blank? %>

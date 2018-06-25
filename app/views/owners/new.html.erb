@@ -1,4 +1,15 @@
-This is the owner new page
+ <nav class="navbar navbar-default">
+  <div class="container">
+	  <div class="navbar-header">
+	  	<a href="/"  class="navbar-brand">WOD Tracker</a>
+	  </div>
+	  <ul class="nav navbar-nav navbar-right">
+	  	<li><a href="/sessions/new">Login</a></li>
+	  	<li><a href="/users/new">Signup</a></li>
+	  	<li><a href="/owners">Gym Owners/Managers</a></li>
+	  </ul>
+	 </div>
+ </nav>
 
 <% if @owner.errors.any? %>
   <div id="error_explanation">
@@ -11,14 +22,8 @@ This is the owner new page
   </div>
 <% end %>
 
-<%=form_for @owner do |f| %>
-	<label>Full Name: </label>
-	<%=f.text_field :name %><br>
-	<label>Username: </label>
-	<%=f.text_field :username %><br>
-	<label>Email: </label>
-	<%=f.text_field :email %><br>
-	<label>Password: </label>
-	<%=f.password_field :password %><br>
-	<%=f.submit "Create Profile" %>
+
+<%= form_for @owner, :html => {:class => "form-horizontal"} do |f| %>
+	<%= render :partial => "form", :locals=>{:f=>f} %>
+	<%=f.submit "Create Profile" %><br><br>
 <%end%>

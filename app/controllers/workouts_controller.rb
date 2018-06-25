@@ -1,14 +1,18 @@
 class WorkoutsController < ApplicationController
 
 	def new
-		@gym = Gym.find_by(id: params[:gym_id])
-		@owner = Owner.find_by(id: params[:owner_id])
-		@workout = Workout.new
+		if current_owner
+			@gym = Gym.find_by(id: params[:gym_id])
+			@owner = Owner.find_by(id: params[:owner_id])
+			@workout = Workout.new
+		else
+			redirect_to owners_path
+		end
 		
 	end
 
 	def create
-		binding.pry
+	
 		gym = Gym.find_by(id: params[:gym_id])
 		workout = gym.workouts.build(workout_params)
 		if gym.owner_id == current_owner.id
@@ -42,9 +46,13 @@ class WorkoutsController < ApplicationController
 	end
 
 	def edit
-		@gym = Gym.find_by(id: params[:gym_id])
-		@owner = Owner.find_by(id: params[:owner_id])
-		@workout = Workout.find_by(id: params[:id])
+		if current_owner
+			@gym = Gym.find_by(id: params[:gym_id])
+			@owner = Owner.find_by(id: params[:owner_id])
+			@workout = Workout.find_by(id: params[:id])
+		else
+			redirect_to owners_path 
+		end
 
 	end
 

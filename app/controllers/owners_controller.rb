@@ -36,10 +36,20 @@ class OwnersController < ApplicationController
 	end
 
 	def edit
-
+		@owner = current_owner
+		if !@owner
+			redirect_to owners_path
+		end
 	end
 
 	def update
+		owner = current_owner
+		if owner
+			owner.update(owner_params)
+			redirect_to owner_path(owner)
+		else
+			redirect_to owners_path
+		end
 
 	end
 

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
 	def new
 		@user = User.new
-		@gyms = Gym.all[0...-1]
+		
 	end
 
 	def create
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 			session[:user_id] = @user.id
 			redirect_to user_path(@user)
 		else
-			# @gyms = Gym.all[0...-1]
+			
 			render :new
 		end
 

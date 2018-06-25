@@ -1,4 +1,15 @@
-This is the owner login page
+ <nav class="navbar navbar-default">
+  <div class="container">
+	  <div class="navbar-header">
+	  	<a href="/"  class="navbar-brand">WOD Tracker</a>
+	  </div>
+	  <ul class="nav navbar-nav navbar-right">
+	  	<li><a href="/sessions/new">Login</a></li>
+	  	<li><a href="/users/new">Signup</a></li>
+	  	<li><a href="/owners">Gym Owners/Managers</a></li>
+	  </ul>
+	 </div>
+ </nav>
 
 <%=form_for(@owner, url: ownersessions_path) do |f| %>
 	<label>Username: </label>

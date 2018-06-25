@@ -1,66 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<h1>Wod Tracker</h1>
 
-Things you may want to cover:
+<h2>Description:</h2>
+<h3>Wod Tracker is an Ruby on Rails application that allows Gym owners to post and track user workouts.  It also allows for the members of the gyms to follow their gym, as well as track their own workouts.</h3>
 
-* Ruby version
+<h2>Setup:</h2>
 
-* System dependencies
+<h3>
+	<ul>
+		<li>Fork and clone repository</li>
+		<li>Run Bundle install</li>
+		<li>Run rake:seed to populate the db with Owners, Users, and Gyms</li>
+		<li>Run thin start --ssl to start the server</li>
+		<li>Proceed to https://localhost:3000/ in your browser to use the application</li>
+	</ul>
+</h3>
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-	<label>Name: </label>
-	<%=f.text_field :name %><br>
-	<label>City: </label>
-	<%=f.text_field :city %><br>
-	<label>State: </label>
-	<%=f.text_field :state %><br>
-	<label>Gym affiliation: </label>
-	<%=f.collection_select(:gym_id, Gym.all[0...-1], :id, :name, {:include_blank => 'Select your gym'})%><br>
-	<label>Email: </label>
-	<%=f.text_field :email %><br>
-	<label>Username: </label>
-	  <%=f.text_field :username %><br> 
-	<label>Password: </label>
-	  <%=f.text_field :password %><br>
-
-	<label>Name: </label>
-	<%=f.text_field :name %>
-	<label>Conditioning type: </label>
-	<%=f.text_field :conditioning_type %>
-	<label>Description: </label>
-	<%=f.text_area :description %>
-
-<div class="form-group">
-        <%= f.label :name, "Name:", class: "col-xs-2 control-label" %>
-        <div class="col-xs-10 trial">
-          <%= f.text_field :name, class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label :conditioning_type, "Conditioning Type:", class: "col-xs-2 control-label" %>
-        <div class="col-xs-10 trial">
-          <%= f.text_field :conditioning_type, class: "form-control" %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :description, "Description:", class: "col-xs-2 control-label" %>
-        <div class="col-xs-10 trial">
-          <%= f.text_field :description, class: "form-control" %>
-        </div>
-      </div>
