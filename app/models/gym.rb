@@ -4,6 +4,8 @@ class Gym < ApplicationRecord
 	has_many :users
 	has_many :user_workouts, through: :users
 	belongs_to :owner
+	scope :mostpopular, -> { where(id: Gym.mostusers.id)}
+
 
 	def wod_results
 		nested_arr = []
@@ -21,6 +23,21 @@ class Gym < ApplicationRecord
 			end
 		end
 		nested_arr
+	end
+
+	def self.mostusers 
+		popular = ""
+		placeholder = 0
+		Gym.all.each do |gym|
+			
+			number = gym.users.count
+			if number > placeholder
+				placeholder = number
+				popular = gym
+				
+			end		
+		end	
+		popular
 	end
 
 

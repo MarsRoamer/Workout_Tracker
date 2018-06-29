@@ -35,4 +35,6 @@ class User < ApplicationRecord
     !self.provider.blank?
   end
 
+
+
 end

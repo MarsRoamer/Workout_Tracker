@@ -1,6 +1,8 @@
 class GymController < ApplicationController
 
 	def index
+		@gym = Gym.mostpopular
+
 
 	end
 
