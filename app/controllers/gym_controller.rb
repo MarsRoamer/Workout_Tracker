@@ -2,8 +2,6 @@ class GymController < ApplicationController
 
 	def index
 		@gym = Gym.mostpopular
-
-
 	end
 
 	def new
@@ -20,11 +18,14 @@ class GymController < ApplicationController
 		gym.save
 		redirect_to gym_path(gym)
 		
-
 	end
 
+	
+
 	def show
+		
 		@gym = Gym.find_by(id: params[:id])
+		@comment = Comment.new
 	end
 
 	private
