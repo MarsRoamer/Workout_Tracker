@@ -25,12 +25,34 @@ class WorkoutsController < ApplicationController
 	end
 
 	def index
-		if current_user
-			@user = current_user
+		# respond_to do |format|
+		# 	format.html 
+				if current_user
+					@user = current_user
+					render :index
+				else
+					redirect_to new_session_path
+				end
+		# 	format.json 
+		# 		workouts = UserWorkout.where(user_id: current_user.id)
+				
+		# end
+	end
 
-		else
-			redirect_to new_session_path
-		end
+	def test
+		
+		gym = Gym.find_by(id: params["gym_id"])
+
+		render json: gym		
+	end
+
+	def display
+		
+		id = params[:workout_id]
+		
+		workout = Workout.find_by(id: id)
+		
+		render json: workout
 	end
 
 	def show
