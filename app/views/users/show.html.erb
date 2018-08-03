@@ -41,11 +41,12 @@
 		 			</div>
 		 			<hr id="wodhr">
 		 			<div class="row woddesc">
-		 					<p><%=current_user.gym.workouts.last.name%></p>
-		 					<p><%=current_user.gym.workouts.last.description%></p>
-		 					
+		 					<p id="wodName"><%=current_user.gym.workouts.last.name%></p>
+		 					<p id="wodType"><%=current_user.gym.workouts.last.conditioning_type%></p>
+		 					<p id="wodDescription"><%=current_user.gym.workouts.last.description%></p>
+		 					<button id="previous-workout" data-id="0">Browse archived workouts</button>
 		 				<div id="wob">
-		 				<%=link_to "Do this workout", new_workout_userworkout_path(current_user.gym.workouts.last)%><br> 
+<!-- 		 				<%=link_to "Do this workout", new_workout_userworkout_path(current_user.gym.workouts.last)%><br>  -->
 		 				 
 		 				</div>
 
@@ -69,7 +70,7 @@
 	 
 	 	</div>
 	 </div>
-	 <button id="previous-workout" data-id="0">Browse archived workouts</button>
+	 <!-- <button id="previous-workout" data-id="0">Browse archived workouts</button> -->
 
 	 <h2 id="wodName"></h2>
 	 <p id="wodType"></p>
@@ -80,12 +81,18 @@
 	$(function(){
 		$("#previous-workout").on("click", function(element) {
 			let id = parseInt($("#previous-workout").attr("data-id")) + 1;
-			$.getJSON("/workouts/display?workout_id=" + id, function(data) {
 
-      			$("#wodName").text(data["name"]);
-      			$("#wodType").text(data["conditioning_type"]);
-      			$("#wodDescription").text(data["description"]);
-      			$("#previous-workout").attr("data-id", data["id"]);
+			$.getJSON("/workouts/display?workout_id=" + id, function(data) {
+				if(data !== null) {
+					$("#previous-workout").text("Next...")
+	      			$("#wodName").text(data["name"]);
+	      			$("#wodType").text(data["conditioning_type"]);
+	      			$("#wodDescription").text(data["description"]);
+	      			$("#previous-workout").attr("data-id", data["id"]);
+      			} else {
+      				$("#previous-workout").text("End of workouts, click to browse again")
+      				$("#previous-workout").attr("data-id", 0);
+      			}
     		});
 			
 		})
