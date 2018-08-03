@@ -4,7 +4,8 @@ Rails.application.routes.draw do
     # get 'signout', to: 'sessions#destroy', as: 'signout'
 
 	root 'application#home'
-
+	get '/workouts/test', to: 'workouts#test'
+	get '/workouts/display', to:'workouts#display'
 	resources :owners, only: [:index, :new, :create, :edit, :update, :show] do 
 		resources :gym, only: [:new, :edit, :update, :create] do
 			resources :workouts, only: [:new, :create, :edit, :update]
@@ -20,7 +21,9 @@ Rails.application.routes.draw do
 		resources :userworkouts, only: [:new, :create, :edit, :update, :show]
 	end
 	resources :users, only: [:new, :create, :edit, :update, :show]
+	resources :comments, only: [:new, :create, :show]
 	get '/mostpopulargym', to: 'gym#index'
+	
 	
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
