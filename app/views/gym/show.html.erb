@@ -31,14 +31,22 @@
 <%end%>
 
 <p id="wod-comment"><p><br>
-<div class="form-group">
+
 <%=form_for(@comment) do |f| %>
-	<%=f.label :comment %>
-	<%=f.text_area :comment %>
-	<%=f.label :name %>
+<div class="form-group">
+	  <%=f.label :comment, class: "col-xs-2 control-label" %>
+	<div class="col-xs-10 trial">
+	  <%=f.text_area :comment %>
+	</div>
+</div>
+<div class="form-group">
+	<%=f.label :name, class: "col-xs-2 control-label" %>
+	<div class="col-xs-10 trial">
 	<%=f.text_field :name %>
+</div>
 	<%=f.hidden_field(:workout_id, :value => @gym.workouts.last.id)%>
 	<%=f.submit %>
+</div>
 <%end%>
 </div>
 
