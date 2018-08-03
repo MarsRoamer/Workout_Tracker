@@ -26,6 +26,9 @@ class GymController < ApplicationController
 		
 		@gym = Gym.find_by(id: params[:id])
 		@comment = Comment.new
+		
+		@comments = Comment.where(workout_id: @gym.workouts.last.id)
+
 	end
 
 	private
