@@ -44,13 +44,9 @@
 		 					<p id="wodName"><%=current_user.gym.workouts.last.name%></p>
 		 					<p id="wodType"><%=current_user.gym.workouts.last.conditioning_type%></p>
 		 					<p id="wodDescription"><%=current_user.gym.workouts.last.description%></p>
+		 					<a id="do-workout" href="/workouts/<%=current_user.gym.workouts.last.id%>/userworkouts/new">Do this workout</a><br>
 		 					<button id="previous-workout" data-id="0">Browse archived workouts</button>
-		 				<div id="wob">
-<!-- 		 				<%=link_to "Do this workout", new_workout_userworkout_path(current_user.gym.workouts.last)%><br>  -->
-		 				 
-		 				</div>
-
-
+		 		
 		 			</div>
 
 	 			<%end%>
@@ -70,11 +66,7 @@
 	 
 	 	</div>
 	 </div>
-	 <!-- <button id="previous-workout" data-id="0">Browse archived workouts</button> -->
 
-	 <h2 id="wodName"></h2>
-	 <p id="wodType"></p>
-	 <p id="wodDescription"></p>
 <%end%>
 
 <script type="text/javascript">
@@ -89,6 +81,7 @@
 	      			$("#wodType").text(data["conditioning_type"]);
 	      			$("#wodDescription").text(data["description"]);
 	      			$("#previous-workout").attr("data-id", data["id"]);
+	      			$("#do-workout").attr("href", `/workouts/${data["id"]}/userworkouts/new`)
       			} else {
       				$("#previous-workout").text("End of workouts, click to browse again")
       				$("#previous-workout").attr("data-id", 0);
