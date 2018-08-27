@@ -32,6 +32,8 @@
 
 <p id="wod-comment"><p><br>
 
+<%if !@gym.workouts.blank? %>
+
 <%=form_for(@comment) do |f| %>
 <div class="form-group">
 	  <%=f.label :comment, class: "col-xs-2 control-label" %>
@@ -49,6 +51,7 @@
 </div>
 <%end%>
 </div>
+<%end%>
 
 <%if !@gym.workouts.blank? %>
 
@@ -86,24 +89,6 @@
 	<a href="/workouts/{{id}}/userworkouts/new">Do This Workout</a>
 	{{/each}}
 </script>
-
-<!-- <script type="text/javascript">
-	$(function() {
-		$("#hideWorkouts").hide();
-		$("form").submit(function(event) {
-			event.preventDefault();
-			let values = $(this).serialize();
-
-			let posting = $.post('/comments', values);
-			posting.done(function(comment){
-				let userComment = new Comment(comment["comment"], comment["name"])
-				document.getElementById("wod-comment").innerHTML += `<p>${userComment.getComment()}</p>`
-
-			})
-			$("form").trigger("reset");
-		})
-	})
-</script> -->
 
 <script type="text/javascript">
 	$(function() {
