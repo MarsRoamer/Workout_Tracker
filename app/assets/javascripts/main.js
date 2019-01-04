@@ -1,19 +1,4 @@
-// const clickCount = 0
-	// $(function(){
-	// 	$("#previous-workout").on("click", function(element) {
-	// 		let id = parseInt($("#previous-workout").attr("data-id")) + 1;
-	// 		$.getJSON("/workouts/display?workout_id=" + id, function(data) {
-
- //      			$("#wodName").text(data["name"]);
- //      			$("#wodType").text(data["conditioning_type"]);
- //      			$("#wodDescription").text(data["description"]);
- //      			$("#previous-workout").attr("data-id", data["id"]);
- //    		});
-			
-	// 	})
-	// })
-
-
+let placeHolder;
 
 function getWorkouts(gym) {
 
@@ -26,6 +11,7 @@ function getWorkouts(gym) {
 
 			const template = Handlebars.compile(document.getElementById("workouts-template").innerHTML);
 			const result = template(myjson.workouts);
+			placeHolder = myjson.workouts
 
 			document.getElementById("workouts").innerHTML = result;
 			// clickCount++;
@@ -46,9 +32,9 @@ function hideWorkouts() {
 	
 }
 
-function previousWorkout() {
-	debugger;
-}
+// function previousWorkout() {
+// 	debugger;
+// }
 
 class Comment{
 	constructor(comment, name) {
@@ -60,4 +46,19 @@ class Comment{
 		return `${this.name} commented: ${this.comment}`
 	}
 }
+
+function sortWorkouts() {
+
+  let sorted = placeHolder.sort(function(a, b){
+    if(a.conditioning_type.toUpperCase() < b.conditioning_type.toUpperCase()) return -1;
+    if(a.conditioning_type.toUpperCase() > b.conditioning_type.toUpperCase()) return 1;
+    return 0;
+  })
+  	const template = Handlebars.compile(document.getElementById("workouts-template").innerHTML);
+	const result = template(sorted);
+
+	document.getElementById("workouts").innerHTML = result;
+ 
+}
+
 

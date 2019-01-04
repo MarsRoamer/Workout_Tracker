@@ -71,7 +71,7 @@
 <%end%>
  -->
 <button id="workoutBtn" onclick="getWorkouts(<%=@gym.id%>)">See Previous Workouts</button>
-<button id="hideWorkouts" onclick="hideWorkouts()">Hide Workouts</button>
+<button id="hideWorkouts" onclick="hideWorkouts()">Hide Workouts</button><br><br>
 
 <%if owner_logged_in?%>
 	<h2>Click here to add workout: <%=link_to "Add Workout", new_owner_gym_workout_path(@gym.owner, @gym), method: "Get"%></h2>
@@ -82,12 +82,14 @@
 </div>
 
 <script id="workouts-template" type="text/x-handlebars-template">
+	<button onclick="sortWorkouts()">Sort Workouts by type</button><br><br>
 	{{#each this}}
 	<h3>Name: {{name}}</h3>
 	<p>Conditioning Type: {{conditioning_type}}</p>
 	<p>Description: {{description}}</p>
-	<a href="/workouts/{{id}}/userworkouts/new">Do This Workout</a>
+	<a href="/workouts/{{id}}/userworkouts/new">Do This Workout</a><br>
 	{{/each}}
+	
 </script>
 
 <script type="text/javascript">
