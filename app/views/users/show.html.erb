@@ -41,17 +41,19 @@
 		 			</div>
 		 			<hr id="wodhr">
 		 			<div class="row woddesc">
-		 					<p><%=current_user.gym.workouts.last.description%></p>
-		 				
-		 				<div id="wob">
-		 				  <%=link_to "Do this workout", new_workout_userworkout_path(current_user.gym.workouts.last)%>
-		 				</div>
-
+		 					<p id="wodName"><%=current_user.gym.workouts.last.name%></p>
+		 					<p id="wodType"><%=current_user.gym.workouts.last.conditioning_type%></p>
+		 					<p id="wodDescription"><%=current_user.gym.workouts.last.description%></p>
+		 					<a id="do-workout" href="/workouts/<%=current_user.gym.workouts.last.id%>/userworkouts/new">Do this workout</a><br>
+		 					<button id="previous-workout" data-id="0">Browse archived workouts</button>
+		 		
 		 			</div>
+
 	 			<%end%>
 	 			<hr id="wodhr">
 	 			
 	 		</div>
+
 	 		<div class="col-lg-4 usershow">
 	 			<div class="row gympic">
 	 				<img src="https://www.marathon-crossfit.com/hs-fs/hub/407947/file-2586099693-jpg/crossfitblackandwhite.jpg?t=1528984936978">
@@ -64,7 +66,30 @@
 	 
 	 	</div>
 	 </div>
-</body>
-
 
 <%end%>
+
+<script type="text/javascript">
+	$(function(){
+		$("#previous-workout").on("click", function(element) {
+			let id = parseInt($("#previous-workout").attr("data-id")) + 1;
+
+			$.getJSON("/workouts/display?workout_id=" + id, function(data) {
+				if(data !== null) {
+					$("#previous-workout").text("Next...")
+	      			$("#wodName").text(data["name"]);
+	      			$("#wodType").text(data["conditioning_type"]);
+	      			$("#wodDescription").text(data["description"]);
+	      			$("#previous-workout").attr("data-id", data["id"]);
+	      			$("#do-workout").attr("href", `/workouts/${data["id"]}/userworkouts/new`)
+      			} else {
+      				$("#previous-workout").text("End of workouts, click to browse again")
+      				$("#previous-workout").attr("data-id", 0);
+      			}
+    		});
+			
+		})
+	})
+</script>
+
+</body>

@@ -18,3 +18,4 @@
 </h3>
 
 ***Updated JQUERY frontend***
+***Added Rails API***

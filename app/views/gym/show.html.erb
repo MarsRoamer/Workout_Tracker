@@ -19,12 +19,44 @@
 <%if !@gym.workouts.blank? %>
 	
 	<h2>Today's Workout of the day is: <%=link_to @gym.workouts.last.name, workout_path(@gym.workouts.last)%></h2>
-	
+
+<%end%>
+
+<h1>Comments on the current WOD:</h1>
+
+<%if @comments%>
+	<%@comments.each do |comment| %>
+		<p><%=comment.name%> commented: <%=comment.comment%></p>
+	<%end%>
+<%end%>
+
+<p id="wod-comment"><p><br>
+
+<%if !@gym.workouts.blank? %>
+
+<%=form_for(@comment) do |f| %>
+<div class="form-group">
+	  <%=f.label :comment, class: "col-xs-2 control-label" %>
+	<div class="col-xs-10 trial">
+	  <%=f.text_area :comment %>
+	</div>
+</div>
+<div class="form-group">
+	<%=f.label :name, class: "col-xs-2 control-label" %>
+	<div class="col-xs-10 trial">
+	<%=f.text_field :name %>
+</div>
+	<%=f.hidden_field(:workout_id, :value => @gym.workouts.last.id)%>
+	<%=f.submit %>
+</div>
+<%end%>
+</div>
 <%end%>
 
 <%if !@gym.workouts.blank? %>
 
 	<%if !@gym.wod_results.blank? %>
+	<h2>Scores for Today's WOD</h2>
 		<%@gym.wod_results.each do |p| %>
 			<label>Name: <%=p[0]%></label><br>
 			<label>Time: <%=p[1]%></label><br>
@@ -32,13 +64,54 @@
 		<%end%>
 	<%end%>
 <%end%>
-
+<!-- 
 <%=form_tag workout_path, method: "get" do %>
 	<h2>Previous Workouts: </h2><%=collection_select(:workout, :workout_id, @gym.workouts.all, :id, :name)%>
 	<%=submit_tag "See Workout" %>
 <%end%>
-
+ -->
+<button id="workoutBtn" onclick="getWorkouts(<%=@gym.id%>)">See Previous Workouts</button>
+<button id="hideWorkouts" onclick="hideWorkouts()">Hide Workouts</button><br><br>
 
 <%if owner_logged_in?%>
 	<h2>Click here to add workout: <%=link_to "Add Workout", new_owner_gym_workout_path(@gym.owner, @gym), method: "Get"%></h2>
 <%end%>
+
+<div id="workouts">
+	
+</div>
+
+<script id="workouts-template" type="text/x-handlebars-template">
+	<button onclick="sortWorkouts()">Sort Workouts by type</button><br><br>
+	{{#each this}}
+	<h3>Name: {{name}}</h3>
+	<p>Conditioning Type: {{conditioning_type}}</p>
+	<p>Description: {{description}}</p>
+	<a href="/workouts/{{id}}/userworkouts/new">Do This Workout</a><br>
+	{{/each}}
+	
+</script>
+
+<script type="text/javascript">
+	$(function() {
+		$("#hideWorkouts").hide();
+		$("form").submit(function(event) {
+			event.preventDefault();
+			let values = $(this).serialize();
+
+			if(this.comment_comment.value !== "" &&this.comment_name.value !== ""){
+				let posting = $.post('/comments', values);
+				posting.done(function(comment){
+				let userComment = new Comment(comment["comment"], comment["name"])
+				document.getElementById("wod-comment").innerHTML += `<p>${userComment.getComment()}</p>`
+				$("form").trigger("reset");
+			})
+			} else {
+				return
+			}			
+		})
+	})
+</script>
+
+
+
